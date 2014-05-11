@@ -13,8 +13,8 @@ development:
   encoding: utf8
   database: simple_cms_development
   pool: 5
-  username: simple_cms
-  password: JNTQGXWV
+  username: simple
+  password: simple
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
