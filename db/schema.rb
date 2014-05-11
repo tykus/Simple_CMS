@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510100813) do
+ActiveRecord::Schema.define(version: 20140511171325) do
+
+  create_table "admin_users", force: true do |t|
+    t.string   "name"
+    t.string   "hashed_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "admin_users_pages", id: false, force: true do |t|
+    t.integer "admin_user_id"
+    t.integer "page_id"
+  end
+
+  add_index "admin_users_pages", ["admin_user_id", "page_id"], name: "index_admin_users_pages_on_admin_user_id_and_page_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "name"
