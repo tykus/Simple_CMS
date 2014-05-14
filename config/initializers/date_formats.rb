@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:custom] = "%A, %d %B %Y at %H:%M:%S"
