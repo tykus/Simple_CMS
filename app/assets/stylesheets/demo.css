@@ -2,3 +2,31 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+body {
+  background-color: #eee;
+  color: #333;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 0 auto;
+  width: 800px;
+}
+
+pre {
+  margin: 0;
+}
+
+code {
+  background-color: #111;
+  color: #fff;
+}
+
+header {
+  background-color: #333;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+}
