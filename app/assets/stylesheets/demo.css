@@ -14,12 +14,3 @@ body {
   margin: 0 auto;
   width: 800px;
 }
-
-pre {
-  margin: 0;
-}
-
-code {
-  background-color: #111;
-  color: #fff;
-}
