@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Sanitizing Input</h1>
+  <p><strong>All user data should be considered unsafe, whether it comes from URL parameters, form data, cookie data or database data.</strong></p>
+
+  <hr>
+  <h2>html_escape() / h()</h2>
+  <hr>
+  <p>Since Rails 3, all input is considered unsafe by default, and any HTML is escaped; instead developers must specify when they do <strong>not</strong> want something escaped.</p>
+  <pre class="prettyprint">&lt;%= text %&gt;</pre>
+  <%= @text %>
+  <hr>
+  <pre class="prettyprint">&lt;%= html_escape(@text) %&gt;</pre>
+  <%= html_escape(@text) %>
+  <hr>
+  <pre class="prettyprint">&lt;%= h(@text) %&gt;</pre>
+  <%= h(@text) %>
+  
+  <hr>
+  <h2>raw()</h2>
+  <p>If we trust a string, and want it's HTML rendered, we can use the raw() method </p>
+  <pre class="prettyprint">&lt;%= raw(@text) %&gt;</pre>
+  <%= raw(@text) %>
+  
+  <hr>
+  <h2>html_safe</h2>
+  <pre class="prettyprint">&lt;%= @text.html_safe %&gt;</pre>
+  <%= @text.html_safe %>
+  <pre class="prettyprint">&lt;%= @text.html_safe? %&gt;</pre>
+  <%= @text.html_safe? %>
+  
+  <hr>
+  <h2>strip_links()</h2>
+  <p>Removes the links from the strong, but no other HTML tags are affected.</p>
+  <pre class="prettyprint">&lt;%= strip_links(@text) %&gt;</pre>
+  <%= strip_links(@text) %>
+  
+  <hr>
+  <h2>strip_tags()</h2>
+  <p>Removes all HTML tags from the string, rather than escaping them.</p>
+  <pre class="prettyprint">&lt;%= strip_tags(@text) %&gt;</pre>
+  <%= strip_tags(@text) %>
+  
+  <hr>
+  <h2>sanitize(@text, options)</h2>
+  <small>Removes HTML and JavaScript, watching for all of the tricks that a malicious user might use to sneak malicaious code through one of the earlier methods. The developer can specify the :tags and :attributes which should be whitelisted and pass through the method.</small>
+  <pre class="prettyprint">&lt;%= sanitize(@text, :tags => ['p', 'br', 'strong', 'em'], :attributes => ['id', 'class']) %&gt;</pre>
+  <p><%= sanitize(@text, :tags => ['p', 'br', 'strong', 'em'], :attributes => ['id', 'class']) %></p>
+
+
+
+</div>

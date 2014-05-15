@@ -1,92 +1,81 @@
 <div class="container">
-  <header>
-    <h1>Text Helpers</h1>
-  </header>
-  <%
-    text = "This is some long sample text. It includes line breaks\nand double-line breaks.\n\nIt rambles on and on and on.\n\n Until we get to this last line."
-  %>
-  <pre class="prettyprint">
-  &lt;%
-    text = "This is some long sample text. It includes line breaks\nand double-line breaks.\n\nIt rambles on and on and on.\n\n Until we get to this last line."
-  %&gt;
-  </pre>
+  <h1>Text Helpers</h1>
 
   <hr>
   <%# 
     word_wrap() adds a '\n' character after every :line_width characters
     but because HTML does not observe '\n' this content should be wrapped in <pre> tags.
   %>
-  <h2>word_wrap</h2>
+  <h2>word_wrap()</h2>
   <pre class="prettyprint">
-    &lt;%= word_wrap(text, :line_width => 30) %&gt;
-  </pre>
-  <%= word_wrap(text, :line_width => 30) %>
+    &lt;%= word_wrap(@text, :line_width => 30) %&gt; </pre>
+  <%= word_wrap(@text, :line_width => 30) %>
   <pre class="prettyprint">
-    &lt;pre&gt;&lt;%= word_wrap(text, :line_width => 30) %&gt;&lt;/pre&gt;
+    &lt;pre&gt;&lt;%= word_wrap(@text, :line_width => 30) %&gt;&lt;/pre&gt;
   </pre>
   <pre>
-    <%= word_wrap(text, :line_width => 30) %>
+    <%= word_wrap(@text, :line_width => 30) %>
   </pre>
 
   <hr>
   <%# 
     simple_format() wraps content in <p> tags and adds a <br> tag for every single '\n' character, and a </p> tag where '\n\n' characters occur.
   %>
-  <h2>simple_format</h2>
+  <h2>simple_format()</h2>
   <pre class="prettyprint">
-    &lt;%= simple_format(text) %&gt;
+    &lt;%= simple_format(@text) %&gt;
   </pre>
-  <%= simple_format(text) %>
+  <%= simple_format(@text) %>
 
   <hr>
   <%# 
     simple_format() combined with word_wrap() renders HTML with the desired wrapping effect. 
   %>
   <h2>simple_format + word_wrap</h2>
-  <%= simple_format(word_wrap(text, :line_width => 30)) %>
+  <%= simple_format(word_wrap(@text, :line_width => 30)) %>
 
   <hr>
   <%# 
     truncate() will output the first :length of characters in the string.  We can provide an optional :omission argument which defaults to '...' - this goes towards the total character count; if we want none :omission => ""
   %>
-  <h2>truncate</h2>
+  <h2>truncate()</h2>
   <pre class="prettyprint">
-    &lt;%= truncate(text, :length => 40, :omission => '...') %&gt;
+    &lt;%= truncate(@text, :length => 40, :omission => '...') %&gt;
   </pre>
-  <%= truncate(text, :length => 40, :omission => '...') %>
+  <%= truncate(@text, :length => 40, :omission => '...') %>
   <hr>
   <pre class="prettyprint">
-    &lt;%= truncate(text, :length => 40, :omission => '') %&gt;
+    &lt;%= truncate(@text, :length => 40, :omission => '') %&gt;
   </pre>
-  <%= truncate(text, :length => 40, :omission => "") %>
+  <%= truncate(@text, :length => 40, :omission => "") %>
 
   <hr>
   <%# 
     excerpt() is similar to truncate() except that it finds a target word around which snips out text before and after the target by a :radius amount of characters. It also takes an optional :omission argument which defaults to '...'
   %>
-  <h2>excerpt</h2>
+  <h2>excerpt()</h2>
   <pre class="prettyprint">
-    &lt;%= excerpt(text, "includes", :radius => 7, :omission => '...') %&gt;
+    &lt;%= excerpt(@text, "includes", :radius => 7, :omission => '...') %&gt;
   </pre>
-  <%= excerpt(text, "includes", :radius => 7, :omission => '...') %>
+  <%= excerpt(@text, "includes", :radius => 7, :omission => '...') %>
   <hr>
 
   <hr>
 
 
-  <h2>highlight</h2>
+  <h2>highlight()</h2>
   <%# 
-    highlight() finds that target text in the input text and wraps it in HTML <mark> tags by default.  It will accept a String or Array of Strings.  We can also provide an optional :highlighter argument to specify custom markup with \1 as a placeholder for the target word.
+    highlight() finds that target string in the input string and wraps it in HTML <mark> tags by default.  It will accept a String or Array of Strings.  We can also provide an optional :highlighter argument to specify custom markup with \1 as a placeholder for the target word.
   %>
   <pre class="prettyprint">
-    &lt;%= highlight(text, "sample text") %&gt;
+    &lt;%= highlight(@text, "sample text") %&gt;
   </pre>
-  <%= highlight(text, "sample text") %>
+  <%= highlight(@text, "sample text") %>
   <hr>
   <pre class="prettyprint">
-    &lt;%= highlight(text, ["sample", "rambles"], :highlighter => '<em>\1</em>') %&gt;
+    &lt;%= highlight(@text, ["sample", "rambles"], :highlighter => '<em>\1</em>') %&gt;
   </pre>
-  <%= highlight(text, ["sample", "rambles"], :highlighter => '<em>\1</em>') %>
+  <%= highlight(@text, ["sample", "rambles"], :highlighter => '<em>\1</em>') %>
 
   <hr>
 
@@ -109,15 +98,14 @@
   <br>
   <%= "animal".pluralize %>
 
-  <h2>cycle</h2>
+  <h2>cycle()</h2>
   <%# 
     cycle() is not just a text helper, but that's one use for it. As we move through a loop, each time through the loop, cycle will move down through the values. An internal cycle counter keeps track of where cycle() is, when it gets to the end of its vaues, it will start over again
   %>
-  <pre>
+  <pre class="prettyprint">
     &lt;% 5.times do %&gt;
       &lt;%= cycle('red, 'green', 'blue') %&gt;
-    &lt;% end %&gt;
-  </pre>
+    &lt;% end %&gt;</pre>
   <% 5.times do %>
     <%= cycle('red', 'green', 'blue') %>
   <% end %>
