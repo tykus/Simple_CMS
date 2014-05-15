@@ -3,6 +3,7 @@ class DemoController < ApplicationController
   layout "demo"
 
   def index
+    @user_entered_data = "Sorry!'); alert('I hacked you!"
   end
 
   def text_helpers

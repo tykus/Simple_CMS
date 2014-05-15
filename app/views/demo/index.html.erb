@@ -1,0 +1,29 @@
+<div class="container"> 
+  <h1>Demo#index</h1>
+
+  <p>
+    Demonstrating the use of Rails' <strong>link_to</strong> helper method<br>
+    <pre class="prettyprint">&lt;%= link_to('Text Helpers', {:controller => 'demo', :action => 'text_helpers'}) %&gt;</pre>
+    <%= link_to('Text Helpers', {:controller => 'demo', :action => 'text_helpers'}) %><br>
+    We do not need to specify the <code>:controller</code> if we are linking to a different action in the same controller:<br>
+    <pre class="prettyprint">&lt;%= link_to('Number Helpers', {:action => 'number_helpers'}) %&gt;</pre>
+    <%= link_to('Number Helpers', {:action => 'number_helpers'}) %><br>
+    We can also send URL parameters:
+    <pre class="prettyprint">&lt;%= link_to('Page #3', {:controller => 'pages', :action => 'show', :id => 3}) %&gt;</pre>
+    <%= link_to('Page #3', {:controller => 'pages', :action => 'show', :id => 3}) %>
+  </p>
+  <hr>
+  <p>
+    Adding javascript inside a <strong>link_to</strong> helper method:<br>
+    <pre class="prettyprint">&lt;%= link_to('Roar', '#', :onclick => "jsRoar('JavaScript'); return true;") %&gt;</pre>
+    <%= link_to('Roar', '#', :onclick => "jsRoar('JavaScript'); return true;") %><br>
+    
+    Adding inline javascript tags:<br>
+    <pre class="prettyprint">&lt;%= javascript_tag("jsRoar('Rails!');") %&gt;</pre>
+    <%= javascript_tag("jsRoar('Rails!');") %><br>
+
+    Escaping javascript is imperative if user-entered data is being used.  Rails provides the escape_javascript() method or its shortcut j():
+    <pre class="prettyprint">&lt;%= link_to('Roar', '#', :onclick => "jsRoar('#{ j(@user_entered_data) }'); return true;") %&gt;</pre>
+    <%= link_to('Roar', '#', :onclick => "jsRoar('#{ j(@user_entered_data) }'); return true;") %><br>
+  </p>
+</div>
