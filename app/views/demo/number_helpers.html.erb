@@ -1,3 +1,14 @@
-<% num = 34.98778324 %>
+	<% num = 34.98778324 %>
 
-<%= number_to_currency(num, ) %>
+	<h1>Numbers Helpers</h1>
+	
+	<hr>
+	<h2>number_to_currency</h2>
+	<p>The number_to_currency() method will return a formatted string displaying the number argument as a currency amount; this defaults to the US dollar format.  We can specify a new format inline, or alternatively, if the app requires, we can setup a new default in the config/locales/en.yml file</p>
+	<pre class="prettyprint">&lt;%= number_to_currency(num, :unit => 'kr', :format => '%u %n' ) %&gt;</pre>
+	<%= number_to_currency(num, :unit => 'kr', :format => '%u %n' ) %>
+
+	<hr>
+	<h2>number_to_phone</h2>
+	<pre class="prettyprint">&lt;%= number_to_phone(1234566789, :area_code => true, :country_code => 1, :separator => ' ') %&gt;</pre>
+	<%= number_to_phone(1234566789, :area_code => true, :country_code => 1, :separator => ' ') %>
