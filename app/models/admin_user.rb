@@ -8,7 +8,7 @@ class AdminUser < ActiveRecord::Base
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9]{2,4}\z/
 
   # This is a dummy example for a custom validation method, username_is_allowed; validates_exclusion_of could accomplish the same validation, but for demo purposes only.
-  FORBIDDEN_USERNAMES = ["administrator", "superuser", ]
+  FORBIDDEN_USERNAMES = ["administrator", "superuser"]
 
   validates_presence_of :first_name
   validates_length_of :first_name, :maximum => 25
