@@ -20,13 +20,20 @@ class AdminUser < ActiveRecord::Base
   validates_presence_of :email
   validates_length_of :email, :maximum => 100
   validates_format_of :email, :with => EMAIL_REGEX
-  validates_confirmation_of :email # creates a virtual attribute :email_confirmation which must match :email to pass
+  validates_confirmation_of :email # creates a virtual attribute :email_confirmation which must match :email to pass validation
   validate :username_is_allowed
+  validate :no_new_users_at_weekend, :on => :create
 
-
+  # Custom Validation methods
   def username_is_allowed
     if FORBIDDEN_USERNAMES.include?(username)
       errors.add(:username, "has been restricted from use")
+    end
+  end
+
+  def no_new_users_at_weekend
+    if [6,7].include?(Time.now.wday)
+      errors[:base] << "No new user signups allowed at the weekend"
     end
   end
 end
