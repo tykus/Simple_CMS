@@ -1,8 +1,8 @@
 class AdminUsersController < ApplicationController
   
-  before_action :confirm_logged_in
-
   layout "admin"
+
+  before_action :confirm_logged_in
 
   def index
     @admin_users = AdminUser.sorted
@@ -18,7 +18,6 @@ class AdminUsersController < ApplicationController
       flash[:notice] = "New admin user created successfully."
       redirect_to(:action => 'index')
     else
-      flash[:notice] = "The new admin user was not saved."
       render('new')
     end
   end
@@ -33,7 +32,6 @@ class AdminUsersController < ApplicationController
       flash[:notice] = "Admin user updated successfully."
       redirect_to(:action => 'index')
     else
-      flash[:notice] = "Admin user was not updated."
       render('edit')
     end
   end
@@ -50,7 +48,7 @@ class AdminUsersController < ApplicationController
 
   private
     def admin_user_params
-      params.require(:admin_user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :username)
+      params.require(:admin_user).permit(:email, :first_name, :last_name, :password, :username)
     end
 
 end
