@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
     @subjects = Subject.sorted
-    @page_count = Page.count
+    @page_count = @subject.pages.count
   end
 
   def update
@@ -25,7 +25,7 @@ class PagesController < ApplicationController
       flash[:notice] = "Page updated successfully"
       redirect_to(:action => 'show', :id => @page.id, :subject_id => @subject.id)
     else
-      @page_count = Page.count
+      @page_count = @subject.pages.count
       @subjects = Subject.sorted
       render('edit')
     end
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new({:subject_id => @subject.id, :name => "Default"})
     @subjects = Subject.sorted
-    @page_count = Page.count + 1    
+    @page_count = @subject.pages.count + 1    
   end
 
   def create
