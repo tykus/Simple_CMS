@@ -2,8 +2,11 @@ class AccessController < ApplicationController
   
   layout "admin"
 
+  before_action :confirm_logged_in, :only => :index
+  # Same as:
+  # before_action :confirm_logged_in, :except => [:login, :attempt_login, :logout]
+
   def index
-    
   end
 
   def login
@@ -19,7 +22,8 @@ class AccessController < ApplicationController
     end
 
     if authorised_user
-      # mark user as logged in
+      session[:user_id] = authorised_user.id
+      session[:username] = authorised_user.username
       flash[:notice] = "You are now logged in"
       redirect_to(:action => 'index')
     else
@@ -30,8 +34,10 @@ class AccessController < ApplicationController
   end
 
   def logout
-    # mark the user logged out
+    session[:user_id] = nil
+    session[:username] = nil
     flash[:notice] = "Logged out"
     redirect_to(:action => 'login')
   end
+
 end
