@@ -2,6 +2,8 @@ class Subject < ActiveRecord::Base
 
   has_many :pages
 
+  acts_as_list
+
   validates :name, :presence => true,
                    :length => {:maximum => 255}
 
