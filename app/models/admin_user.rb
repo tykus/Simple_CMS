@@ -6,6 +6,8 @@ class AdminUser < ActiveRecord::Base
   has_many :section_edits
   has_many :sections, :through => :section_edits
 
+  scope :sorted, lambda { order('last_name ASC') }
+
   # Define a regular expression to match against the email address
   EMAIL_REGEX = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0-9]{2,4}\z/
 
