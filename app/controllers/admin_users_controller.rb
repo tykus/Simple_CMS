@@ -9,9 +9,11 @@ class AdminUsersController < ApplicationController
   end
 
   def new
+    @admin_user = AdminUser.new
   end
 
   def edit
+    @admin_user = AdminUser.find(params[:id])
   end
 
   def delete

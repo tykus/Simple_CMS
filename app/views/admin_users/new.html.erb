@@ -1,2 +1,13 @@
-<h1>AdminUser#new</h1>
-<p>Find me in app/views/admin_user/new.html.erb</p>
+<%= link_to("<< Back to Admin Users", {:action => 'index'}, {:class => 'back-link'}) %>
+
+<div class="admin_user new">
+<%= form_for(@admin_user, :url => {:action => :create}) do |f| %>
+  
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  
+  <div class="form-buttons">
+    <%= submit_tag('Create Admin User') %>
+  </div>
+
+<% end %>
+</div>
