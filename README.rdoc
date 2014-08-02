@@ -1,3 +1,0 @@
-== Simple CMS
-
-This is a small Rails 4.0 app which is following a Lynda.com tutorial
